@@ -1,5 +1,5 @@
 // see SignupForm.js for comments
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { loginUser } from '../utils/API';
@@ -24,8 +24,10 @@ const LoginForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
+setValidated(true);
 
     try {
+      if (form.checkValidity()) {
       const response = await loginUser(userFormData);
 
       if (!response.ok) {
@@ -35,7 +37,11 @@ const LoginForm = () => {
       const { token, user } = await response.json();
       console.log(user);
       Auth.login(token);
-    } catch (err) {
+
+      setUserFormData({ email: '', password: ''});
+      setValidated(false); 
+    } 
+  } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
