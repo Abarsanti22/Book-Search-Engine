@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client'
-import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -11,7 +10,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1 className='display-2'>Wrong page!</h1>,
+    errorElement: <h1 className="display-2">Wrong page!</h1>,
     children: [
       {
         index: true,
